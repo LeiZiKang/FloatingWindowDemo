@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import UIKit
 import ZKFloatingWindow
 
 struct ContentView: View {
     @State private var showFloatingWindow = false
-    @State private var viewModel = HitViewModel()
+    @State private var viewModel = ViewModel()
+    
     var body: some View {
         NavigationStack{
             VStack {
@@ -25,6 +27,29 @@ struct ContentView: View {
             print("click screen")
         })
         .floatingWindow(show: $showFloatingWindow) {
+            FloatView(viewModel: viewModel)
+                .frame(maxHeight: .infinity, alignment: .bottom)
+        }
+        .onAppear {
+            showFloatingWindow = true
+        }
+    }
+}
+
+struct FloatView: View {
+    var viewModel: ViewModel
+    let screen: (width: CGFloat, height: CGFloat) = (UIScreen.main.bounds.width, UIScreen.main.bounds.height)
+    var body: some View {
+        HStack {
+            
+            Text("count: \(viewModel.count)")
+                .font(.title2)
+                .bold()
+                .foregroundStyle(.orange)
+                .padding()
+            
+            Spacer()
+            
             Button {
                 viewModel.count += 1
                 print("count times: \(viewModel.count)")
@@ -37,15 +62,9 @@ struct ContentView: View {
                             .foregroundStyle(.white)
                     })
                     .padding()
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .frame(maxHeight: .infinity, alignment: .bottom)
-                
             }
-
         }
-        .onAppear {
-            showFloatingWindow = true
-        }
+        .frame(width: screen.width)
     }
 }
 
@@ -56,27 +75,10 @@ struct SecondView: View {
 }
 
 @Observable
-class HitViewModel {
+class ViewModel {
     var count = 0
 }
 
-public struct RoundRectangleButton: View {
-    let label: String
-    let color: Color
-    public init (label: String, color: Color) {
-        self.label = label
-        self.color = color
-    }
-    public var body: some View {
-        Text(label)
-            .font(.system(size: 14, weight: .bold))
-            .frame(maxWidth: .infinity)
-            .padding()
-            .foregroundColor(.white)
-            .background(color)
-            .cornerRadius(5)
-    }
-}
 #Preview {
     RootView {
         ContentView()
