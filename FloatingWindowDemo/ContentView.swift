@@ -22,13 +22,14 @@ struct ContentView: View {
             }
             .padding()
             .contentShape(Rectangle())
-        }
-        .onTapGesture(perform: {
-            print("click screen")
-        })
-        .floatingWindow(show: $showFloatingWindow) {
-            FloatView(viewModel: viewModel)
-                .frame(maxHeight: .infinity, alignment: .bottom)
+            .onTapGesture(perform: {
+                // Test whether click events can be transmitted normally
+                print("click screen")
+            })
+            .floatingWindow(show: $showFloatingWindow) {
+                FloatView(viewModel: viewModel)
+                    .frame(maxHeight: .infinity, alignment: .bottom)
+            }
         }
         .onAppear {
             showFloatingWindow = true
