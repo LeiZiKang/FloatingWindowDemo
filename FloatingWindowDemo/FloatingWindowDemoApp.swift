@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ZKFloatingWindow
 
 @main
 struct FloatingWindowDemoApp: App {
