@@ -12,7 +12,9 @@ import ZKFloatingWindow
 struct FloatingWindowDemoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView {
+                ContentView()
+            }
         }
     }
 }
