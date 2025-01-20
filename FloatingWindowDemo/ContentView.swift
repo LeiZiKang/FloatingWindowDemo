@@ -19,6 +19,10 @@ struct ContentView: View {
                 NavigationLink("SecondView") {
                     SecondView()
                 }
+                
+                Button("Change State") {
+                    viewModel.state.toggle()
+                }
             }
             .padding()
             .contentShape(Rectangle())
@@ -27,10 +31,15 @@ struct ContentView: View {
                 print("click screen")
             })
             .floatingWindow(show: $showFloatingWindow) {
-                FloatView(viewModel: viewModel)
+                FloatView()
                     .frame(maxHeight: .infinity, alignment: .bottom)
+                    .environment(\.viewModel, viewModel)
             }
         }
+        .sheet(isPresented: $viewModel.show) {
+            Text("Hello")
+        }
+
         .onAppear {
             showFloatingWindow = true
         }
@@ -38,7 +47,7 @@ struct ContentView: View {
 }
 
 struct FloatView: View {
-    var viewModel: ViewModel
+    @Environment(\.viewModel) var viewModel: ViewModel
     let screen: (width: CGFloat, height: CGFloat) = (UIScreen.main.bounds.width, UIScreen.main.bounds.height)
     var body: some View {
         HStack {
@@ -56,7 +65,7 @@ struct FloatView: View {
                 print("count times: \(viewModel.count)")
             } label: {
                 Circle()
-                    .fill(Color.blue)
+                    .fill(viewModel.compSatet ? .blue : .gray)
                     .frame(width: 80, height: 80)
                     .overlay(content: {
                         Image(systemName: "plus")
@@ -66,6 +75,12 @@ struct FloatView: View {
             }
         }
         .frame(width: screen.width)
+        HStack {
+            Button("Open Sheet") {
+                viewModel.show.toggle()
+            }
+            
+        }
     }
 }
 
@@ -78,8 +93,20 @@ struct SecondView: View {
 @Observable
 class ViewModel {
     var count = 0
+    var show = false
+    var state = false
+    var compSatet: Bool {
+        state
+    }
 }
 
+struct ViewModelEnvironmentKey: EnvironmentKey {
+    static let defaultValue: ViewModel = .init()
+}
+
+extension EnvironmentValues {
+    @Entry var viewModel: ViewModel = .init()
+}
 #Preview {
     RootView {
         ContentView()

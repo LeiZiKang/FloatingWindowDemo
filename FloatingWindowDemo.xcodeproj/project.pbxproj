@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4666DCAE2D3C51250065DD3D /* ZKFloatingWindow in Frameworks */ = {isa = PBXBuildFile; productRef = 4666DCAD2D3C51250065DD3D /* ZKFloatingWindow */; };
+		4666DE4A2D3D4E020065DD3D /* ZKFloatingWindow in Frameworks */ = {isa = PBXBuildFile; productRef = 4666DE492D3D4E020065DD3D /* ZKFloatingWindow */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4666DC9A2D3C4EC80065DD3D /* FloatingWindowDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatingWindowDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4666DCAB2D3C50FD0065DD3D /* ZKFloatingWindow */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ZKFloatingWindow; path = ../ZKFloatingWindow; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -29,6 +29,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4666DCAE2D3C51250065DD3D /* ZKFloatingWindow in Frameworks */,
+				4666DE4A2D3D4E020065DD3D /* ZKFloatingWindow in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,7 +41,6 @@
 			children = (
 				4666DC9C2D3C4EC80065DD3D /* FloatingWindowDemo */,
 				4666DC9B2D3C4EC80065DD3D /* Products */,
-				4666DCAB2D3C50FD0065DD3D /* ZKFloatingWindow */,
 				4666DCAC2D3C51250065DD3D /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -81,6 +81,7 @@
 			name = FloatingWindowDemo;
 			packageProductDependencies = (
 				4666DCAD2D3C51250065DD3D /* ZKFloatingWindow */,
+				4666DE492D3D4E020065DD3D /* ZKFloatingWindow */,
 			);
 			productName = FloatingWindowDemo;
 			productReference = 4666DC9A2D3C4EC80065DD3D /* FloatingWindowDemo.app */;
@@ -110,6 +111,9 @@
 			);
 			mainGroup = 4666DC912D3C4EC80065DD3D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4666DE482D3D4E020065DD3D /* XCRemoteSwiftPackageReference "ZKFloatingWindow" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4666DC9B2D3C4EC80065DD3D /* Products */;
 			projectDirPath = "";
@@ -339,9 +343,25 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		4666DE482D3D4E020065DD3D /* XCRemoteSwiftPackageReference "ZKFloatingWindow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LeiZiKang/ZKFloatingWindow";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		4666DCAD2D3C51250065DD3D /* ZKFloatingWindow */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = ZKFloatingWindow;
+		};
+		4666DE492D3D4E020065DD3D /* ZKFloatingWindow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4666DE482D3D4E020065DD3D /* XCRemoteSwiftPackageReference "ZKFloatingWindow" */;
 			productName = ZKFloatingWindow;
 		};
 /* End XCSwiftPackageProductDependency section */
